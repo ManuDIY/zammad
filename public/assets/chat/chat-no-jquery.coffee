@@ -489,7 +489,7 @@ do(window) ->
         title: @options.title,
         scrollHint: @options.scrollHint
       )
-      @options.target.appenChild(nodeElem.firstChild)
+      @options.target.appendChild(nodeElem.firstChild)
       @el = @options.target.querySelector('.zammad-chat')
       @input = @el.querySelector('.zammad-chat-input')
       @body = @el.querySelector('.zammad-chat-body')

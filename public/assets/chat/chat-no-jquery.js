@@ -855,7 +855,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
         title: this.options.title,
         scrollHint: this.options.scrollHint
       });
-      this.options.target.appenChild(nodeElem.firstChild);
+      this.options.target.appendChild(nodeElem.firstChild);
       this.el = this.options.target.querySelector('.zammad-chat');
       this.input = this.el.querySelector('.zammad-chat-input');
       this.body = this.el.querySelector('.zammad-chat-body');
