@@ -830,10 +830,14 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
     };
 
     ZammadChat.prototype.render = function() {
+      var btn;
       if (!this.el || !document.querySelector('.zammad-chat')) {
         this.renderBase();
       }
-      document.querySelector("." + this.options.buttonClass).classList.add(this.inactiveClass);
+      btn = document.querySelector("." + this.options.buttonClass);
+      if (btn) {
+        btn.classList.add(this.inactiveClass);
+      }
       this.setAgentOnlineState('online');
       this.log.debug('widget rendered');
       this.startTimeoutObservers();
@@ -917,7 +921,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
               result = dataUrl;
               img = new Image();
               img.style.width = '100%';
-              img.style.maxWidth = width(+'px');
+              img.style.maxWidth = width + 'px';
               img.src = result;
               if (document.caretPositionFromPoint) {
                 pos = document.caretPositionFromPoint(x, y);
@@ -968,7 +972,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
                 }
                 img = new Image();
                 img.style.width = '100%';
-                img.style.maxWidth = width(+'px');
+                img.style.maxWidth = width + 'px';
                 img.src = dataUrl;
                 return document.execCommand('insertHTML', false, img);
               };
@@ -1182,9 +1186,13 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
     };
 
     ZammadChat.prototype.onError = function(message) {
+      var btn;
       this.log.debug(message);
       this.addStatus(message);
-      document.querySelector("." + this.options.buttonClass).classList.add('zammad-chat-is-hidden');
+      btn = document.querySelector("." + this.options.buttonClass);
+      if (btn) {
+        btn.classList.add('zammad-chat-is-hidden');
+      }
       if (this.isOpen) {
         this.disableInput();
         return this.destroy({
@@ -1781,7 +1789,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
     };
 
     ZammadChat.prototype.enableScrollOnRoot = function() {
-      this.scrollRoot.scrollTop = this.rootScrollOffset(+'px');
+      this.scrollRoot.scrollTop = this.rootScrollOffset + 'px';
       this.scrollRoot.style.overflow = '';
       return this.scrollRoot.style.position = '';
     };

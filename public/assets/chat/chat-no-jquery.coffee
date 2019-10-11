@@ -467,8 +467,9 @@ do(window) ->
         @renderBase()
 
       # disable open button
-      document.querySelector(".#{ @options.buttonClass }").classList.add @inactiveClass
-
+      btn = document.querySelector(".#{ @options.buttonClass }")
+      if btn
+        btn.classList.add(@inactiveClass)
       @setAgentOnlineState 'online'
 
       @log.debug 'widget rendered'
@@ -549,7 +550,7 @@ do(window) ->
             result = dataUrl
             img = new Image()
             img.style.width = '100%'
-            img.style.maxWidth = width +'px'
+            img.style.maxWidth = width + 'px'
             img.src = result
 
             if document.caretPositionFromPoint
@@ -597,7 +598,7 @@ do(window) ->
 
               img = new Image()
               img.style.width = '100%'
-              img.style.maxWidth = width +'px'
+              img.style.maxWidth = width + 'px'
               img.src = dataUrl
               document.execCommand('insertHTML', false, img)
 
@@ -772,7 +773,10 @@ do(window) ->
     onError: (message) =>
       @log.debug message
       @addStatus(message)
-      document.querySelector(".#{ @options.buttonClass }").classList.add('zammad-chat-is-hidden')
+      btn = document.querySelector(".#{ @options.buttonClass }")
+      if btn
+        btn.classList.add('zammad-chat-is-hidden')
+
       if @isOpen
         @disableInput()
         @destroy(remove: false)
@@ -1289,7 +1293,7 @@ do(window) ->
       @scrollRoot.style.position = 'fixed'
 
     enableScrollOnRoot: ->
-      @scrollRoot.scrollTop = @rootScrollOffset +'px'
+      @scrollRoot.scrollTop = @rootScrollOffset + 'px'
       @scrollRoot.style.overflow = ''
       @scrollRoot.style.position = ''
 
